@@ -15,5 +15,13 @@ def triangle(self):
     return [a, b, c]
 
 def draw(self, screen):
-    print("Player draw method called!")
-    pygame.draw.polygon(screen, "white", self.triangle(), 2)
+    print("Player draw method called!") # This one should definitely print!
+    print(f"Player position: {self.position}")
+    print(f"Player radius: {self.radius}")
+
+    try:
+        triangle_points = self.triangle()
+        print(f"Triangle points: {triangle_points}")
+        pygame.draw.polygon(screen, "white", triangle_points, 2)
+    except Exception as e:
+        print(f"Error drawing triangle: {e}")

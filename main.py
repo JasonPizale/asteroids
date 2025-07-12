@@ -1,23 +1,33 @@
 import pygame
 from constants import *
-from player import * 
+from player import *
 
 def main():
-    print("Before pygame.init()")
+    print("Initializing Pygame...")
     pygame.init()
-    print("After pygame.init()")
-    pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    print("Screen set up.")
-    
-    # Just to keep the window open for a moment
-    running = True
-    while running:
+    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    print("Pygame initialized. Screen set up.")
+    print("Starting Asteroids!")
+    print(f"Screen width: {SCREEN_WIDTH}")
+    print(f"Screen height: {SCREEN_HEIGHT}")
+    player = Player((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2))
+    print("Player object created.") # <-- CRITICAL: Is this printed?
+
+    clock = pygame.time.Clock()
+    dt = 0
+    print("Entering game loop...") # <-- CRITICAL: Is this printed?
+    while True:
+        print("Inside game loop iteration.") # <-- CRITICAL: Is this printed repeatedly?
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                running = False
-    pygame.quit()
-    print("Pygame quit.")
+                print("QUIT event detected. Exiting game.")
+                return
+        screen.fill("black")
+        player.draw(screen) # (Ensure your player.draw also has its print statement)
+        pygame.display.flip()
+        dt = clock.tick(60) / 1000
 
 if __name__ == "__main__":
     main()
+    print("Main function finished executing.")
 
