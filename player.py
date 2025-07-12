@@ -15,4 +15,5 @@ def triangle(self):
     return [a, b, c]
 
 def draw(self, screen):
+    print("Player draw method called!")
     pygame.draw.polygon(screen, "white", self.triangle(), 2)
