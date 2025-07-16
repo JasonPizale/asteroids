@@ -50,7 +50,9 @@ def main():
         screen.fill("black")
         for item_to_draw in drawable:
             item_to_draw.draw(screen)
-        shots.draw(screen)
+        
+        for shot in shots:
+            shot.draw(screen)
 
         pygame.display.flip()
 
