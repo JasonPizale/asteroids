@@ -33,9 +33,7 @@ def main():
         screen.fill("black")
         for item_to_draw in drawable:
             item_to_draw.draw(screen)
-    
-        print(f"Number of asteroids: {len(asteroids)}")
-        print(f"Number of drawable items: {len(drawable)}")
+            
         pygame.display.flip()
 
 if __name__ == "__main__":
