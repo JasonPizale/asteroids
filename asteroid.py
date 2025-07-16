@@ -12,13 +12,20 @@ class Asteroid(CircleShape):
     def update(self, dt):
         self.position = self.position + (self.velocity * dt)
 
-class Shot(CircleShape):
+class Shot(CircleShape, pygame.sprite.Sprite):
     def __init__(self, position, velocity):
         super().__init__(position.x, position.y, SHOT_RADIUS)
         self.velocity = velocity
+        self.rect = pygame.Rect(
+            self.position.x - self.radius,
+            self.position.y - self.radius,
+            2 * self.radius,
+            2 * self.radius
+        )
 
     def update(self, dt):
         self.position += self.velocity * dt
+        self.rect.center = (self.position.x, self.position.y)
 
     def draw(self, screen):
         pygame.draw.circle(screen, "white", self.position, self.radius)

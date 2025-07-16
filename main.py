@@ -46,10 +46,6 @@ def main():
             if asteroid.collisions(player):
                 print("Game over!")
                 sys.exit()
-        
-        for bullet in list(shots):
-            if not hasattr(bullet, "rect"):
-                print("Found shot without rect!", bullet, type(bullet))
 
         for asteroid in list(asteroids):
             for bullet in list(shots):
