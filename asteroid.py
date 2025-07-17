@@ -19,8 +19,7 @@ class Asteroid(CircleShape):
     def update(self, dt):
         self.position = self.position + (self.velocity * dt)
         self.rect.center = (self.position.x, self.position.y)
-
-    print(f"Splitting! p=({self.position.x}, {self.position.y}) r={new_radius} v1={vel1} v2={vel2}")
+        
     def split(self):
         self.kill()
         if self.radius <= ASTEROID_MIN_RADIUS:
