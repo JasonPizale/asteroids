@@ -51,7 +51,7 @@ def main():
             for bullet in list(shots):
                 if bullet.rect.colliderect(asteroid.rect):
                     bullet.kill()
-                    asteroid.kill()
+                    asteroid.split()
                 
         screen.fill("black")
         for item_to_draw in drawable:
