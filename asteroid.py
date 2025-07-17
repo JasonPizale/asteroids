@@ -1,6 +1,6 @@
 from circleshape import CircleShape
 import pygame
-from constants import SHOT_RADIUS
+from constants import SHOT_RADIUS, ASTEROID_MIN_RADIUS
 import random
 
 class Asteroid(CircleShape):
