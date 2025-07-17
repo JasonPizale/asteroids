@@ -20,6 +20,7 @@ class Asteroid(CircleShape):
         self.position = self.position + (self.velocity * dt)
         self.rect.center = (self.position.x, self.position.y)
 
+    print(f"Splitting! p=({self.position.x}, {self.position.y}) r={new_radius} v1={vel1} v2={vel2}")
     def split(self):
         self.kill()
         if self.radius <= ASTEROID_MIN_RADIUS:
@@ -28,8 +29,14 @@ class Asteroid(CircleShape):
         vel1 = self.velocity.rotate(random_angle) * 1.2
         vel2 = self.velocity.rotate(-random_angle) * 1.2
         new_radius = self.radius - ASTEROID_MIN_RADIUS
-        Asteroid(self.position.x, self.position.y, new_radius, vel1)
-        Asteroid(self.position.x, self.position.y, new_radius, vel2)
+
+        offset_distance = new_radius / 2
+        new_pos1 = self.position + vel1.normalize() * offset_distance
+        new_pos2 = self.position + vel2.normalize() * offset_distance
+
+        Asteroid(new_pos1.x, new_pos1.y, new_radius, vel1)
+        Asteroid(new_pos2.x, new_pos2.y, new_radius, vel2)
+
 
 class Shot(CircleShape, pygame.sprite.Sprite):
     def __init__(self, position, velocity):
