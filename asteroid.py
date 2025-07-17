@@ -4,8 +4,9 @@ from constants import SHOT_RADIUS, ASTEROID_MIN_RADIUS
 import random
 
 class Asteroid(CircleShape):
-    def __init__(self, x, y, radius):
+    def __init__(self, x, y, radius, velocity):
         super().__init__(x, y, radius)
+        self.velocity = velocity
         self.rect = pygame.Rect(
             self.position.x - self.radius,
             self.position.y - self.radius,
@@ -24,13 +25,11 @@ class Asteroid(CircleShape):
         if self.radius <= ASTEROID_MIN_RADIUS:
             return
         random_angle = random.uniform(20, 50)
-        vel1 = self.velocity.rotate(random_angle)
-        vel2 = self.velocity.rotate(-random_angle)
-        vel1 = vel1 * 1.2
-        vel2 = vel2 * 1.2
+        vel1 = self.velocity.rotate(random_angle) * 1.2
+        vel2 = self.velocity.rotate(-random_angle) * 1.2
         new_radius = self.radius - ASTEROID_MIN_RADIUS
-        Asteroid(self.position, vel1, new_radius)
-        Asteroid(self.position, vel2, new_radius)
+        Asteroid(self.position.x, self.position.y, new_radius, vel1)
+        Asteroid(self.position.x, self.position.y, new_radius, vel2)
 
 class Shot(CircleShape, pygame.sprite.Sprite):
     def __init__(self, position, velocity):
